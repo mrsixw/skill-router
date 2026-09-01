@@ -1,12 +1,13 @@
 ---
 name: skill-router
 description: Route a request to the most appropriate installed skill using the local catalog, trigger exclusions, invocation mode, and precedence rules.
-disable-model-invocation: true
 ---
 
 # Skill Router
 
 Use the local skill catalog as the source of routing metadata.
+
+Read [the catalog contract](references/catalog-v1.md) before resolving a route.
 
 ## Workflow
 
