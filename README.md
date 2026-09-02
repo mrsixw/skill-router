@@ -1,6 +1,6 @@
 # Skill Router
 
-Choose the right installed skill using catalog metadata, task specificity, and explicit precedence rules.
+Choose the right installed skill using catalogue metadata, task specificity, and explicit precedence rules.
 
 ## Attribution
 

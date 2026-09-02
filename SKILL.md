@@ -1,20 +1,34 @@
 ---
 name: skill-router
-description: Route a request to the most appropriate installed skill using the local catalog, trigger exclusions, invocation mode, and precedence rules.
+description: Route a request to the most appropriate installed skill using the local catalogue, trigger exclusions, invocation mode, and precedence rules.
 ---
 
-# Skill Router
+# Skill router
 
-Use the local skill catalog as the source of routing metadata.
+Resolve a request to the narrowest installed skill that actually owns the work.
+Routing is the complete task; do not execute the selected workflow.
 
-Read [the catalog contract](references/catalog-v1.md) before resolving a route.
+Read [the catalogue contract] before resolving a route.
 
-## Workflow
+## Resolve from installed state
 
-1. Read the installed skill catalog and identify candidate skills from the user's intent.
-2. Prefer the narrowest skill whose trigger matches the task.
-3. Apply explicit precedence and exclusion rules before selecting a skill.
-4. Distinguish user-invoked orchestration from model-invoked reusable discipline.
-5. Explain the selected skill and any safer alternative when routing is ambiguous.
+1. Read the local catalogue and identify candidates from the user's outcome,
+   target, and requested operation.
+2. Confirm that each candidate is installed and that its instructions are
+   readable. Catalogue presence alone is not proof of availability.
+3. Apply trigger exclusions, explicit precedence, and scope boundaries.
+4. Prefer a specific owner over a broad advisory skill. Use orchestration only
+   when the request genuinely spans several workflows.
+5. Distinguish a user-invoked workflow from a reusable discipline that the model
+   applies automatically.
 
-The router must not perform the selected skill's work. It only selects or explains the route. Report missing, duplicate, stale, or contradictory catalog entries.
+Report the selected skill, the matching trigger, invocation mode, mutation
+boundary, and any prerequisite skill. When two candidates remain credible,
+explain the material difference instead of choosing silently.
+
+Report missing, duplicate, stale, contradictory, or unreadable catalogue
+entries. Do not substitute a similarly named skill without saying so.
+
+---
+
+[the catalogue contract]: references/catalog-v1.md
