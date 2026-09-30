@@ -1,18 +1,21 @@
 ---
 name: skill-router
-description: Route a request to the most appropriate installed skill using the local catalogue, trigger exclusions, invocation mode, and precedence rules.
+description: Route a request to the most appropriate already-installed skill using the local catalogue, trigger exclusions, invocation mode, and precedence rules, without executing it. Use when the user asks which installed skill should handle a task. Not for discovering or installing new skills (use find-skills).
 ---
 
 # Skill router
 
 Resolve a request to the narrowest installed skill that actually owns the work.
-Routing is the complete task; do not execute the selected workflow.
+Routing is the complete task; do not execute the selected workflow. This skill
+chooses among installed skills; use `find-skills` to discover or install new
+ones.
 
 Read [the catalogue contract] before resolving a route.
 
 ## Resolve from installed state
 
-1. Read the local catalogue and identify candidates from the user's outcome,
+1. Read the local skill catalogue, commonly `~/.agents/skill-catalog.json`, or
+   a path the user supplies. Identify candidates from the user's outcome,
    target, and requested operation.
 2. Confirm that each candidate is installed and that its instructions are
    readable. Catalogue presence alone is not proof of availability.
