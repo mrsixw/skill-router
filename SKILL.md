@@ -1,6 +1,6 @@
 ---
 name: skill-router
-description: Route a request to the most appropriate already-installed skill using the local catalogue, trigger exclusions, invocation mode, and precedence rules, without executing it. Use when the user asks which installed skill should handle a task. Not for discovering or installing new skills, which is out of scope.
+description: Route a request to the most appropriate already-installed skill using the local catalogue, trigger exclusions, invocation mode, and precedence rules, without executing it. Use when the user asks which installed skill should handle a task. Not for discovering or installing new skills (use find-skills where it is installed).
 ---
 
 # Skill router
@@ -8,8 +8,9 @@ description: Route a request to the most appropriate already-installed skill usi
 Resolve a request to the narrowest installed skill that actually owns the work.
 Routing is the complete task; do not execute the selected workflow. This skill
 chooses among installed skills. Discovering or installing a new skill is out of
-scope: when no installed skill owns the request, say so and stop rather than
-routing to the closest approximation.
+scope: defer to `find-skills` where it is installed, and otherwise report that
+no installed skill owns the request rather than routing to the closest
+approximation.
 
 Read [the catalogue contract] before resolving a route.
 

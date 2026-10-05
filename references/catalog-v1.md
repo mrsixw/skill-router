@@ -17,7 +17,7 @@ inferred safely from names alone:
 
 `invocation` is one of:
 
-- `automatic`: a reusable discipline the model applies without being asked.
+- `model`: a reusable discipline the model applies without being asked.
 - `user`: a workflow the user invokes explicitly.
 
 `mutationScope` is one of, in increasing order of blast radius:
