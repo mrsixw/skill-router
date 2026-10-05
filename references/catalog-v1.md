@@ -15,6 +15,23 @@ inferred safely from names alone:
   Do not use `excludes` for skills that compose (one wraps or invokes the
   other); use `precedence` instead.
 
+`invocation` is one of:
+
+- `automatic`: a reusable discipline the model applies without being asked.
+- `user`: a workflow the user invokes explicitly.
+
+`mutationScope` is one of, in increasing order of blast radius:
+
+- `none`: read-only; produces a report or recommendation only.
+- `workspace`: writes inside the repository or working tree.
+- `home`: writes outside the working tree, to the user's own configuration.
+- `remote`: acts on a system beyond this machine, such as a forge or a hosted
+  model.
+
+An entry may record `invocationInferred: true` when the value was derived from
+the skill's description because the skill declares no invocation policy of its
+own.
+
 Routing rules:
 
 1. Reject entries with missing required fields or unsupported invocation values.
