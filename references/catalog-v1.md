@@ -32,6 +32,25 @@ An entry may record `invocationInferred: true` when the value was derived from
 the skill's description because the skill declares no invocation policy of its
 own.
 
+## Harness plugins
+
+An optional top-level `harnesses` object records skills that ship inside an
+installed harness plugin (a Claude Code or Codex plugin, from a marketplace),
+keyed by harness name (`claude`, `codex`, ...). Each harness's section mirrors
+that harness's own plugin and marketplace files and is synced independently;
+the same plugin's data may repeat across harnesses rather than being
+deduplicated. A section has `marketplaces` (keyed by marketplace name, each
+with `source` and `sourceUrl`) and `plugins` (keyed by `<plugin>@<marketplace>`,
+each with `version`, `enabled`, `skills` — a list of `<plugin>:<skill>` ids —
+`invocation`, `mutationScope`, and `installedAt`).
+
+Route to a plugin's skill only when it is enabled in the harness the request
+is running in: read that harness's own section, never another harness's.
+Apply the same `invocation` and `mutationScope` rules as for personal skills.
+A plugin absent from the current harness's section, or present but
+`enabled: false`, is not routable there even if another harness's section
+lists it.
+
 Routing rules:
 
 1. Reject entries with missing required fields or unsupported invocation values.

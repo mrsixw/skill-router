@@ -28,7 +28,9 @@ Read [the catalogue contract] before resolving a route.
    a path the user supplies. Identify candidates from the user's outcome,
    target, and requested operation.
 2. Confirm that each candidate is installed and that its instructions are
-   readable. Catalogue presence alone is not proof of availability.
+   readable. Catalogue presence alone is not proof of availability. A
+   candidate from a harness plugin's `harnesses` section is available only in
+   the harness this request is running in, and only when enabled there.
 3. Apply trigger exclusions, explicit precedence, and scope boundaries.
 4. Prefer a specific owner over a broad advisory skill. Use orchestration only
    when the request genuinely spans several workflows.
